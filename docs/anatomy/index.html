@@ -135,6 +135,16 @@ header p{margin:8px 0 0;color:var(--muted);max-width:66ch}
 .legend kbd{font:500 11px var(--mono);border:1px solid var(--wire);border-radius:4px;padding:0 4px;color:var(--ink);background:var(--paper)}
 .zone{grid-column:1/-1;font:500 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:10px 2px 0}
 .tip{font-size:12.5px;color:var(--muted);margin:0}
+.pop{position:fixed;z-index:50;max-width:270px;padding:10px 12px;border-radius:8px;background:var(--paper);color:var(--ink);
+  border:1px solid var(--accent);box-shadow:0 8px 24px rgba(0,0,0,.18);pointer-events:none;opacity:0;transform:translateY(4px);
+  transition:opacity .12s,transform .12s;display:grid;grid-template-columns:22px 1fr;gap:8px}
+.pop.show{opacity:1;transform:none}
+.pop .n{width:22px;height:22px;border-radius:50%;background:var(--accent);color:var(--accent-ink);font:500 12px/22px var(--mono);text-align:center}
+.pop b{display:block;font:700 13.5px var(--display)}
+.pop p{margin:2px 0 0;font-size:12.5px;line-height:1.45;color:var(--muted)}
+.pop em{font-style:normal;color:var(--ink);font-weight:500}
+.pop kbd{font:500 11px var(--mono);border:1px solid var(--wire);border-radius:4px;padding:0 4px}
+.region{cursor:help}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
@@ -143,7 +153,7 @@ header p{margin:8px 0 0;color:var(--muted);max-width:66ch}
 <div class="wrap">
   <header>
     <h1>Work Dashboard anatomy</h1>
-    <p>The Week view of Work Dashboard, split into its twelve parts. Each number on the wireframe matches a short note below. Hover a note, or a part of the wireframe, to see which is which. Example content comes from the demo data.</p>
+    <p>The Week view of Work Dashboard, split into its twelve parts. Each number on the wireframe matches a short note below. Hover over (or tap) a part of the wireframe to see what it does; hover a note to find its part. Example content comes from the demo data.</p>
   </header>
 
   <div class="stage">
@@ -279,10 +289,27 @@ header p{margin:8px 0 0;color:var(--muted);max-width:66ch}
 
 <script>
 const regions=[...document.querySelectorAll('.region')], items=[...document.querySelectorAll('.legend li[data-k]')];
+const pop=document.createElement('div');pop.className='pop';pop.setAttribute('role','tooltip');document.body.appendChild(pop);
 function set(k){regions.forEach(r=>r.classList.toggle('on',r.dataset.k===k));items.forEach(i=>i.classList.toggle('on',i.dataset.k===k));}
+function show(r){
+  const li=items.find(i=>i.dataset.k===r.dataset.k); if(!li) return;
+  pop.innerHTML='<span class="n">'+r.dataset.k+'</span><div><b>'+li.querySelector('h3').innerHTML+'</b><p>'+li.querySelector('p').innerHTML+'</p></div>';
+  const b=r.getBoundingClientRect(), vw=document.documentElement.clientWidth, vh=window.innerHeight;
+  pop.style.left='0px';pop.style.top='0px';const p=pop.getBoundingClientRect();
+  let top=b.bottom+8; if(top+p.height>vh-8) top=Math.max(8,b.top-p.height-8);
+  let left=Math.min(Math.max(8,b.left+b.width/2-p.width/2),vw-p.width-8);
+  pop.style.left=left+'px';pop.style.top=top+'px';pop.classList.add('show');
+}
+function hide(){pop.classList.remove('show');}
 items.forEach(i=>{i.addEventListener('mouseenter',()=>set(i.dataset.k));i.addEventListener('focus',()=>set(i.dataset.k));
   i.addEventListener('mouseleave',()=>set(null));i.addEventListener('blur',()=>set(null));});
-regions.forEach(r=>{r.addEventListener('mouseenter',()=>set(r.dataset.k));r.addEventListener('mouseleave',()=>set(null));});
+regions.forEach(r=>{
+  r.addEventListener('mouseenter',()=>{set(r.dataset.k);show(r);});
+  r.addEventListener('mouseleave',()=>{set(null);hide();});
+  r.addEventListener('click',e=>{e.stopPropagation();set(r.dataset.k);show(r);});
+});
+document.addEventListener('click',()=>{set(null);hide();});
+window.addEventListener('scroll',hide,{passive:true,capture:true});
 </script>
 </body>
 </html>
