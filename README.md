@@ -8,6 +8,8 @@
 
 **Full user guide with a screenshot of every feature: [docs/GUIDE.md](docs/GUIDE.md).**
 
+**Interactive map of the page, what each part does: [Work Dashboard anatomy](https://rtomkowski.github.io/work-dashboard/anatomy/).**
+
 ## Highlights
 
 - **Everything in one agenda.** Meetings from Exchange and iCloud, Apple Reminders, `- [ ]` tasks from Obsidian and Jira issues in Day, Week, Month and Year views, with overdue items, overlap warnings and booked hours per day. The Week view is a list or a time grid with free gaps and a live now line.

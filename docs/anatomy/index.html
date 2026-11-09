@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="An annotated wireframe of the Work Dashboard week view: twelve parts and what each one does.">
+<title>Work Dashboard Anatomy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: three-column wireframe of the Work Dashboard week view; numbered pins tie each region to a short note below */
+:root{
+  --bg:#eff0f6; --paper:#ffffff; --side:#f5f5fa; --ink:#1b1d29; --muted:#5f6475;
+  --wire:#d9dbe6; --wire-2:#ececf3; --accent:#5a54d6; --accent-ink:#ffffff; --accent-soft:#e6e5fb;
+  --good:#2a8a5e; --warn:#b5730f; --warn-soft:#fbefd9; --bad:#c43b33; --jira:#2f6fe0;
+  --display:"Archivo",system-ui,sans-serif;
+  --body:"IBM Plex Sans",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#12131b; --paper:#1b1d28; --side:#171923; --ink:#e7e8f2; --muted:#9a9fb3;
+  --wire:#33364a; --wire-2:#272a3a; --accent:#9b97ff; --accent-ink:#13132a; --accent-soft:#2c2b52;
+  --good:#53c592; --warn:#e5a94c; --warn-soft:#3a2e18; --bad:#f07a71; --jira:#7aa7ff; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12131b; --paper:#1b1d28; --side:#171923; --ink:#e7e8f2; --muted:#9a9fb3;
+  --wire:#33364a; --wire-2:#272a3a; --accent:#9b97ff; --accent-ink:#13132a; --accent-soft:#2c2b52;
+  --good:#53c592; --warn:#e5a94c; --warn-soft:#3a2e18; --bad:#f07a71; --jira:#7aa7ff; color-scheme:dark}
+
+html{color-scheme:light}
+@media (prefers-color-scheme: dark){html{color-scheme:dark}}
+body{margin:0;font-size:14px;background:var(--bg);color:var(--ink);font-family:var(--body);line-height:1.5}
+.wrap{max-width:1180px;margin:0 auto;padding-block:40px 56px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  display:grid;gap:28px}
+header h1{font-family:var(--display);font-weight:800;font-size:clamp(28px,4.5vw,44px);letter-spacing:-.02em;margin:0;text-wrap:balance}
+header p{margin:8px 0 0;color:var(--muted);max-width:66ch}
+
+/* ---------- wireframe ---------- */
+.stage{overflow-x:auto;padding:14px 4px 4px}
+.dash{min-width:860px;background:var(--paper);border:1px solid var(--wire);border-radius:10px;
+  display:grid;grid-template-columns:150px 1fr 210px;font-size:10.5px}
+.region{position:relative;transition:outline-color .15s,background .15s;outline:2px solid transparent;outline-offset:-1px;border-radius:6px}
+.region.on{outline-color:var(--accent);background:color-mix(in srgb,var(--accent) 8%,transparent)}
+.pin{position:absolute;top:-10px;left:-10px;z-index:2;width:21px;height:21px;border-radius:50%;
+  background:var(--accent);color:var(--accent-ink);font:500 11px/21px var(--mono);text-align:center;
+  box-shadow:0 0 0 3px var(--paper)}
+.mut{color:var(--muted)}
+.sq{width:8px;height:8px;border-radius:2px;display:inline-block;flex:none}
+.tog{width:20px;height:11px;border-radius:99px;background:var(--accent);margin-left:auto}
+
+/* left */
+.left{background:var(--side);border-right:1px solid var(--wire);padding:14px 10px;display:flex;flex-direction:column;gap:14px;border-radius:10px 0 0 10px}
+.brand{font:700 12px var(--display);display:flex;gap:6px;align-items:center}
+.srcs{display:grid;gap:10px;padding:4px}
+.grp h5{margin:0 0 4px;font:500 8.5px var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center}
+.grp div{display:flex;gap:6px;align-items:center;padding:1.5px 0}
+.prof{margin-top:auto;padding:6px;display:grid;gap:6px}
+.sel{border:1px solid var(--wire);border-radius:5px;padding:3px 6px;background:var(--paper);display:flex;justify-content:space-between}
+.dots{display:flex;gap:4px;align-items:center}
+.dots i{width:7px;height:7px;border-radius:50%;background:var(--good)}
+
+/* middle */
+.mid{display:flex;flex-direction:column;min-width:0}
+.greet{display:flex;justify-content:space-between;gap:10px;padding:14px 16px 10px;align-items:flex-start}
+.hello{padding:4px 6px}
+.hello b{display:block;font:700 17px var(--display)}
+.hello b span{color:var(--accent)}
+.views{padding:4px;display:grid;gap:6px;justify-items:end}
+.wx{font-size:10px}
+.wx b{font:700 15px var(--display)}
+.vbar{display:flex;gap:3px;border:1px solid var(--wire);border-radius:6px;padding:3px}
+.vbar span{white-space:nowrap;padding:2px 6px;border-radius:4px;font:500 9px var(--mono);color:var(--muted)}
+.vbar span.cur{background:var(--accent-soft);color:var(--ink)}
+.vbar .badge{color:#fff;background:var(--bad);border-radius:99px;padding:0 4px;margin-left:2px}
+.tool{display:flex;align-items:center;gap:6px;margin:0 16px;padding:7px 6px;border-top:1px solid var(--wire);border-bottom:1px solid var(--wire)}
+.btn{border:1px solid var(--wire);border-radius:5px;padding:2px 6px;font:500 9.5px var(--mono);color:var(--muted)}
+.btn.today{background:color-mix(in srgb,var(--good) 15%,transparent);color:var(--good);border-color:transparent}
+.btn.plus{background:var(--accent);color:var(--accent-ink);border-color:transparent}
+.tool .wk{font:700 13px var(--display);margin-right:auto}
+.agenda{padding:14px 16px 16px;display:grid;grid-template-columns:62px 1fr;gap:10px 12px}
+.day{padding:2px 4px}
+.day small{display:block;color:var(--accent);font:500 8.5px var(--mono);letter-spacing:.06em}
+.day b{font:700 20px/1 var(--display);color:var(--accent)}
+.day .bar{height:3px;background:var(--accent);border-radius:2px;margin:5px 0 2px;width:80%}
+.items{display:grid;gap:5px;min-width:0}
+.warns{display:flex;gap:5px;padding:3px}
+.chip{background:var(--warn-soft);color:var(--warn);border-radius:4px;padding:1px 6px;font-size:9px;white-space:nowrap}
+.ev{border:1px solid var(--wire);border-left:3px solid var(--good);border-radius:5px;padding:5px 8px;display:flex;gap:10px}
+.ev .t{color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.ev b{font-weight:500}
+.ev em{display:block;font-style:normal;color:var(--warn);font-size:9px}
+.ev.now{background:var(--accent-soft)}
+.ev.now b::after{content:"NOW";font:500 8px var(--mono);color:var(--accent);margin-left:6px}
+.task{border:1px solid var(--wire);border-radius:5px;padding:5px 8px;display:grid;gap:4px}
+.task div{display:flex;gap:7px;align-items:center}
+.task div::before{content:"";width:9px;height:9px;border:1px solid var(--muted);border-radius:50%;flex:none}
+.task .k{color:var(--jira);font-weight:500}
+.tag{margin-left:auto;font-size:8.5px;padding:0 5px;border-radius:4px;background:var(--warn-soft);color:var(--warn)}
+
+/* right */
+.right{border-left:1px solid var(--wire);padding:14px 12px;display:grid;align-content:start;gap:12px}
+.rb{padding:5px}
+.rb h5{margin:0 0 5px;font:500 8.5px var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.cal{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;text-align:center;font:8.5px var(--mono);color:var(--muted)}
+.cal .c{background:var(--accent);color:var(--accent-ink);border-radius:50%}
+.hbars{display:flex;align-items:flex-end;gap:2px;height:26px;margin-top:6px}
+.hbars i{flex:1;background:var(--accent);opacity:.35;border-radius:1px}
+.hbars i:first-child{opacity:1}
+.nn{border:1px solid var(--wire);border-radius:6px;padding:6px 8px;display:grid;gap:4px}
+.nn small{font:500 8px var(--mono);color:var(--accent);letter-spacing:.06em}
+.prog{height:3px;border-radius:2px;background:var(--wire)}
+.prog i{display:block;height:100%;width:60%;background:var(--accent);border-radius:2px}
+.nums{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-top:6px}
+.nums div{border:1px solid var(--wire);border-radius:5px;padding:4px 5px;font-size:8.5px;color:var(--muted)}
+.nums b{display:block;font:700 14px var(--display);color:var(--ink)}
+.nums .od b{color:var(--bad)}
+.li{display:flex;gap:6px;padding:2px 0}
+.li::before{content:"";width:8px;height:8px;border:1px solid var(--muted);border-radius:50%;flex:none;margin-top:2px}
+.pn{border:1px solid var(--wire);border-left:3px solid var(--accent);border-radius:5px;padding:4px 7px;margin-top:4px}
+.dl{display:grid;grid-template-columns:38px 1fr;gap:2px 6px}
+.dl span:nth-child(odd){color:var(--warn);font-variant-numeric:tabular-nums}
+.dl .td{color:var(--bad)!important}
+.ho{color:var(--warn);font-size:9.5px}
+.mtg{display:flex;gap:4px;margin-top:4px}
+
+/* ---------- legend ---------- */
+.legend{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:10px;list-style:none;margin:0;padding:0}
+.legend li{display:grid;grid-template-columns:26px 1fr;gap:10px;padding:12px 14px;border-radius:8px;cursor:default;
+  border:1px solid transparent;transition:border-color .15s,background .15s}
+.legend li:hover,.legend li:focus-visible,.legend li.on{border-color:var(--accent);background:var(--paper);outline:none}
+.legend .n{width:22px;height:22px;border-radius:50%;background:var(--accent);color:var(--accent-ink);font:500 12px/22px var(--mono);text-align:center}
+.legend h3{margin:0;font:700 14.5px var(--display);letter-spacing:-.005em}
+.legend p{margin:2px 0 0;font-size:13px;color:var(--muted)}
+.legend em{font-style:normal;color:var(--ink);font-weight:500}
+.legend kbd{font:500 11px var(--mono);border:1px solid var(--wire);border-radius:4px;padding:0 4px;color:var(--ink);background:var(--paper)}
+.zone{grid-column:1/-1;font:500 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:10px 2px 0}
+.tip{font-size:12.5px;color:var(--muted);margin:0}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <h1>Work Dashboard anatomy</h1>
+    <p>The Week view of Work Dashboard, split into its twelve parts. Each number on the wireframe matches a short note below. Hover a note, or a part of the wireframe, to see which is which. Example content comes from the demo data.</p>
+  </header>
+
+  <div class="stage">
+    <div class="dash" aria-label="Work Dashboard wireframe">
+
+      <!-- LEFT -->
+      <aside class="left">
+        <div class="brand"><span class="sq" style="background:var(--accent)"></span>Work overview</div>
+        <div class="srcs region" data-k="1"><span class="pin">1</span>
+          <div class="grp"><h5>Calendars<span class="tog"></span></h5>
+            <div><span class="sq" style="background:var(--good)"></span>Work</div>
+            <div><span class="sq" style="background:var(--accent)"></span>Courses</div>
+            <div><span class="sq" style="background:var(--warn)"></span>Holidays</div></div>
+          <div class="grp"><h5>Reminder lists<span class="tog"></span></h5>
+            <div><span class="sq" style="background:var(--jira)"></span>Work</div>
+            <div><span class="sq" style="background:var(--warn)"></span>Admin</div></div>
+          <div class="grp"><h5>Obsidian<span class="tog"></span></h5>
+            <div><span class="sq" style="background:var(--accent)"></span>Tasks</div>
+            <div><span class="sq" style="background:var(--accent)"></span>Notes</div></div>
+          <div class="grp"><h5>Jira<span class="tog"></span></h5>
+            <div><span class="sq" style="background:var(--jira)"></span>Lab upgrade</div>
+            <div><span class="sq" style="background:var(--jira)"></span>Teaching</div></div>
+        </div>
+        <div class="prof region" data-k="2"><span class="pin">2</span>
+          <div class="sel"><span>Overview (1)</span><span>▾</span></div>
+          <span class="mut">⚙︎ Settings</span>
+          <span class="mut">Synced 11:29</span>
+          <div class="dots"><i></i><i></i><i></i><i></i></div>
+        </div>
+      </aside>
+
+      <!-- MIDDLE -->
+      <section class="mid">
+        <div class="greet">
+          <div class="hello region" data-k="3"><span class="pin">3</span>
+            <b>Good morning, <span>Alex</span></b>
+            <span class="mut">4 of 5 meetings still ahead · 3 tasks due today · </span><span style="color:var(--bad)">3 overdue</span>
+          </div>
+          <div class="views region" data-k="4"><span class="pin">4</span>
+            <div class="wx">⛅ <b>7°</b> <span class="mut">Partly cloudy · Stockholm</span></div>
+            <div class="vbar"><span>Day 5</span><span class="cur">Week 18</span><span>Month</span><span>Board 2</span><span>Overdue<span class="badge">3</span></span><span>Stats</span><span>Review</span></div>
+          </div>
+        </div>
+
+        <div class="tool region" data-k="5"><span class="pin">5</span>
+          <span class="btn">⌘K</span><span class="btn">‹</span><span class="btn today">Today</span><span class="btn">›</span>
+          <span class="wk">9–15 November</span>
+          <span class="btn">Plan blocks</span><span class="btn">New note</span><span class="btn plus">+</span><span class="btn">⏱</span><span class="btn">⛶</span>
+        </div>
+
+        <div class="agenda">
+          <div class="day region" data-k="6"><span class="pin">6</span><small>MON</small><b>9</b><div class="bar"></div><span class="mut">6.5 h booked</span></div>
+          <div class="items">
+            <div class="warns region" data-k="7"><span class="pin">7</span><span class="chip">⚠ No lunch break</span><span class="chip">⚠ 5.8 h without a break</span></div>
+            <div class="ev now"><span class="t">10:00 – 13:00</span><b>Measurement campaign in the lab</b></div>
+            <div class="ev"><span class="t">13:00 – 14:00</span><b>Research seminar</b></div>
+            <div class="ev" style="border-left-color:var(--jira)"><span class="t">15:15 – 15:45</span><div><b>Call with the journal editor</b><em>⚠ Overlaps another event</em></div></div>
+            <div class="task region" data-k="8"><span class="pin">8</span>
+              <div>Approve travel expenses <span class="tag">high</span></div>
+              <div><span class="k">DEMO-45</span> Book the meeting room for the workshop</div>
+              <div class="mut">Weekly plan · Obsidian note</div>
+            </div>
+          </div>
+          <div class="day"><small>TUE</small><b>10</b><div class="bar" style="width:60%"></div><span class="mut">5.0 h booked</span></div>
+          <div class="items">
+            <div class="ev" style="border-left-color:var(--warn)"><span class="t">14:30 – 15:30</span><b>PhD supervision</b></div>
+            <div class="ev" style="border-left-color:var(--bad)"><span class="t">16:00 – 17:00</span><b>Project sync: Surface Lab</b></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- RIGHT -->
+      <aside class="right">
+        <div class="rb region" data-k="9"><span class="pin">9</span>
+          <h5>November 2026</h5>
+          <div class="cal"><span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
+            <span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span>
+            <span class="c">9</span><span>10</span><span>11</span><span>12</span><span>13</span><span>14</span><span>15</span></div>
+          <h5 style="margin-top:8px">Booked hours, next 14 days</h5>
+          <div class="hbars"><i style="height:90%"></i><i style="height:70%"></i><i style="height:12%"></i><i style="height:70%"></i><i style="height:40%"></i><i style="height:0"></i><i style="height:0"></i><i style="height:25%"></i><i style="height:20%"></i><i style="height:12%"></i><i style="height:15%"></i><i style="height:5%"></i><i style="height:0"></i><i style="height:0"></i></div>
+        </div>
+
+        <div class="rb region" data-k="10"><span class="pin">10</span>
+          <div class="nn"><small>NOW · UNTIL 13:00</small><b>Measurement campaign</b><div class="prog"><i></i></div><span class="mut">1.5 h left</span>
+            <small>NEXT · 13:00</small><b>Research seminar</b></div>
+          <div class="nums"><div><b>5</b>meetings</div><div><b>6.5</b>h booked</div><div class="od"><b>3</b>overdue</div></div>
+        </div>
+
+        <div class="rb region" data-k="11"><span class="pin">11</span>
+          <h5>Up next</h5>
+          <div class="li">Send slides to course participants</div>
+          <div class="li"><span><span style="color:var(--jira)">DEMO-12</span> Calibrate the confocal microscope</span></div>
+          <h5 style="margin-top:6px">Pinned notes</h5>
+          <div class="pn"><b>Roughness parameters cheat sheet</b></div>
+        </div>
+
+        <div class="rb region" data-k="12"><span class="pin">12</span>
+          <h5>Deadlines, next 30 days</h5>
+          <div class="dl"><span class="td">today</span><span>DEMO-45 Book the room</span><span>in 4 d</span><span>Conference full paper</span><span>in 9 d</span><span>Vinnova proposal plan</span></div>
+          <h5 style="margin-top:6px">Heads up, next 7 days</h5>
+          <div class="ho">Today: 2 overlapping · No lunch break</div>
+          <h5 style="margin-top:6px">Next meeting</h5>
+          <b>Measurement campaign in the lab</b>
+          <div class="mtg"><span class="btn">Meeting note</span><span class="btn">Linked note</span></div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <ol class="legend">
+    <li class="zone" aria-hidden="true">Left sidebar</li>
+    <li tabindex="0" data-k="1"><span class="n">1</span><div><h3>Sources</h3><p>Calendars, Reminder lists, Obsidian and Jira. Toggle a source or list to <em>show or hide it</em> everywhere.</p></div></li>
+    <li tabindex="0" data-k="2"><span class="n">2</span><div><h3>Profile &amp; sync status</h3><p>Pick a <em>profile</em> (how the page opens), open Settings, and check the four <em>sync dots</em>: one per source.</p></div></li>
+
+    <li class="zone" aria-hidden="true">Top of the page</li>
+    <li tabindex="0" data-k="3"><span class="n">3</span><div><h3>Greeting</h3><p>Today in one line: <em>meetings still ahead</em>, tasks due and what is overdue.</p></div></li>
+    <li tabindex="0" data-k="4"><span class="n">4</span><div><h3>Weather &amp; view switcher</h3><p>Local weather, then Day, Week, Month, Board, Overdue, Statistics and Review, with <em>counts as badges</em>.</p></div></li>
+    <li tabindex="0" data-k="5"><span class="n">5</span><div><h3>Toolbar</h3><p>Search and commands <kbd>⌘K</kbd>, step through dates, then <em>act</em>: Plan blocks, New note, new reminder, countdown, full screen.</p></div></li>
+
+    <li class="zone" aria-hidden="true">Agenda</li>
+    <li tabindex="0" data-k="6"><span class="n">6</span><div><h3>Day column</h3><p>Date with a bar of <em>booked hours</em>, so heavy days stand out.</p></div></li>
+    <li tabindex="0" data-k="7"><span class="n">7</span><div><h3>Load warnings</h3><p>Amber chips for <em>no lunch break</em>, long stretches without a break and overlapping events.</p></div></li>
+    <li tabindex="0" data-k="8"><span class="n">8</span><div><h3>Tasks &amp; notes</h3><p>Reminders, Obsidian tasks and <em>Jira issues</em> due that day, with priority and status tags.</p></div></li>
+
+    <li class="zone" aria-hidden="true">Right panel</li>
+    <li tabindex="0" data-k="9"><span class="n">9</span><div><h3>Month &amp; 14-day load</h3><p>Mini calendar to jump to a date, and <em>booked hours</em> for the next two weeks.</p></div></li>
+    <li tabindex="0" data-k="10"><span class="n">10</span><div><h3>Now / Next</h3><p>The current meeting with <em>time left</em>, the next one, and today's numbers.</p></div></li>
+    <li tabindex="0" data-k="11"><span class="n">11</span><div><h3>Up next &amp; pinned notes</h3><p>The next open tasks from all sources, and notes tagged <em>#dashboard</em>.</p></div></li>
+    <li tabindex="0" data-k="12"><span class="n">12</span><div><h3>Deadlines, heads up &amp; prep</h3><p>A <em>30-day deadline</em> countdown, warnings for the next 7 days, and prep for the next meeting.</p></div></li>
+  </ol>
+  <p class="tip"><a href="https://github.com/rtomkowski/work-dashboard" style="color:var(--accent)">Work Dashboard on GitHub</a> · Right-panel blocks can be reordered, folded or hidden; the layout is saved in the current profile.</p>
+</div>
+
+<script>
+const regions=[...document.querySelectorAll('.region')], items=[...document.querySelectorAll('.legend li[data-k]')];
+function set(k){regions.forEach(r=>r.classList.toggle('on',r.dataset.k===k));items.forEach(i=>i.classList.toggle('on',i.dataset.k===k));}
+items.forEach(i=>{i.addEventListener('mouseenter',()=>set(i.dataset.k));i.addEventListener('focus',()=>set(i.dataset.k));
+  i.addEventListener('mouseleave',()=>set(null));i.addEventListener('blur',()=>set(null));});
+regions.forEach(r=>{r.addEventListener('mouseenter',()=>set(r.dataset.k));r.addEventListener('mouseleave',()=>set(null));});
+</script>
+</body>
+</html>
