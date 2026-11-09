@@ -1,0 +1,19 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Runtime output (harvested snapshots may hold NDA-sensitive calendar content)
+data/
+logs/
+*.json.bak
+snapshot*.json
+
+# Personal settings (email, vacation weeks, title rules with names). Commit config.example.json instead.
+config.json
+config.json.tmp
+
+# Local backups and temp files
+_backup_*/
+*.tmp
+.DS_Store

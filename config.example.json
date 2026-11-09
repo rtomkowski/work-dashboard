@@ -1,0 +1,201 @@
+{
+  "user_name": "",
+  "port": 8765,
+  "refresh_minutes": 5,
+  "output_dir": "~/Library/Application Support/WorkDashboard/data",
+  "calendar": {
+    "days_back": 35,
+    "days_ahead": 70,
+    "category_colors": false,
+    "exclude_calendars": [
+      "Birthdays",
+      "Siri Suggestions",
+      "Scheduled Reminders"
+    ],
+    "schedule_feeds": []
+  },
+  "reminders": {
+    "exclude_lists": [],
+    "completed_days": 14
+  },
+  "obsidian": {
+    "enabled": false,
+    "vault_path": "~/Documents/Obsidian Vault",
+    "vault_name": "Obsidian Vault",
+    "folders": [
+      "Inbox"
+    ],
+    "recent_days": 7,
+    "pin_tag": "dashboard",
+    "max_undated_tasks": 40,
+    "files": [],
+    "exclude": [
+      "Templates/*",
+      "*/.trash/*"
+    ],
+    "max_notes": 300,
+    "write_folders": [],
+    "note_folder": "Inbox",
+    "meeting_folder": "",
+    "review_folder": "Inbox/WorkDashboard",
+    "review_auto": true,
+    "review_auto_hour": 16,
+    "_review_auto": "v0.45 (KAN-86): the weekly review is written to review_folder by itself once per week, after Friday review_auto_hour (or on the next page load if no page was open then; up to 3 weeks back). Create-only; Save in the Weekly review view still works by hand.",
+    "templates_folder": "Templates",
+    "_write_note": "New notes (v0.37) are created only, never overwritten, in write_folders or, when that is empty, in the folders above (and their subfolders). note_folder / meeting_folder / review_folder are the defaults; empty = note_folder. templates_folder: its .md files appear as templates ({{title}}, {{date}}, {{time}}).",
+    "capture_text_file": "Inbox/WorkDashboard/Capture from Work Dashboard.md",
+    "capture_task_file": "Inbox/WorkDashboard/List from Work Dashboard.md",
+    "capture_file": "Inbox/Capture.md",
+    "capture_daily_folder": "",
+    "inbox_folder": "Inbox",
+    "watch_seconds": 10,
+    "_capture": "Quick capture appends one line: text to capture_text_file, tasks (- [ ]) to capture_task_file (v0.44); capture_file is the old single file, used only when those are empty; <capture_daily_folder>/YYYY-MM-DD.md takes both when set; the folder must be one the dashboard may write to. Inbox triage moves notes out of inbox_folder only. watch_seconds: how often the server checks the Obsidian folders for hand edits and re-reads them (0 = only with the full harvest)."
+  },
+  "jira": {
+    "enabled": false,
+    "site": "https://your-site.atlassian.net",
+    "email": "",
+    "keychain_service": "work-dashboard-jira",
+    "jql": "",
+    "project": "",
+    "issue_type": "Task",
+    "default_epic": "",
+    "_note": "project and issue_type are used by New Jira issue; default_epic (e.g. KAN-29) is the Epic every new issue starts with, empty = none. jql empty = open issues of the project plus Done in the last 14 days."
+  },
+  "stats": {
+    "_note": "Example rules. Copy to config.json and adapt. Rules are tried top to bottom, first match wins, case-insensitive regex on the event title. 'Absence' marks time off, 'Ignore' is not counted. out_of_office_as: a work event Exchange marks 'out of office' is an off-site day and goes to that group, except the listed groups. supergroups: categories per group (Uncategorized is not grouped).",
+    "work_hours": [
+      8,
+      18
+    ],
+    "vacation_weeks": [],
+    "groups": [
+      {
+        "group": "Absence",
+        "match": "out of (the )?office|semester|vacation|ledig|holiday"
+      },
+      {
+        "group": "Ignore",
+        "match": "^hotel stay|^canceled:|^cancelled:|^inställt"
+      },
+      {
+        "group": "Travel & delegations",
+        "match": "^flight to|^train to|taxi|\\btravel|\\btrip\\b|tjänsteresa|site visit|study ?visit"
+      },
+      {
+        "group": "Projects",
+        "match": "project"
+      },
+      {
+        "group": "Teaching",
+        "match": "lecture|lektion|lesson|kurs|course|canvas|exam"
+      },
+      {
+        "group": "Supervision & PhD",
+        "match": "handledning|supervis|thesis|exjobb|examensarbete|disputation|\\bphd\\b"
+      },
+      {
+        "group": "Papers & reviews",
+        "match": "paper|review|publication|submission|writing"
+      },
+      {
+        "group": "Proposals & funding",
+        "match": "proposal|application|vinnova|horizon"
+      },
+      {
+        "group": "Conferences",
+        "match": "\\bconf(\\.|erence|\\b)|summit|expo"
+      },
+      {
+        "group": "Seminars & webinars",
+        "match": "seminar|webinar|forum"
+      },
+      {
+        "group": "Lab & measurements",
+        "match": "measur|\\blab\\b|testing|sample"
+      },
+      {
+        "group": "Group, dept & admin",
+        "match": "department|institution|interview|on-?boarding|procurement|development talk"
+      },
+      {
+        "group": "Social",
+        "match": "fika|lunch|dinner|middag|celebrat|farewell"
+      },
+      {
+        "group": "Personal",
+        "match": "dentist|doctor|school"
+      },
+      {
+        "group": "Focus time",
+        "match": "deep work|focus|blocker\\]? ?$"
+      }
+    ],
+    "out_of_office_as": {
+      "group": "Travel & delegations",
+      "except": [
+        "Absence",
+        "Ignore",
+        "Conferences",
+        "Personal",
+        "Social",
+        "Group, dept & admin"
+      ]
+    },
+    "supergroups": {
+      "Funded projects": [
+        "Projects"
+      ],
+      "Research output": [
+        "Supervision & PhD",
+        "Papers & reviews",
+        "Lab & measurements",
+        "Proposals & funding"
+      ],
+      "Admin": [
+        "Group, dept & admin",
+        "Teaching"
+      ],
+      "Off-site work": [
+        "Conferences",
+        "Travel & delegations"
+      ],
+      "Self-development": [
+        "Seminars & webinars"
+      ],
+      "Focus time": [
+        "Focus time"
+      ],
+      "Personal": [
+        "Personal",
+        "Social"
+      ]
+    },
+    "category_map": {
+      "_note": "v0.67 (KAN-105): Outlook category -> Statistics category (a group name from the rules above, or Absence / Ignore). Read from Outlook for the planner.outlook_calendar; a [Tag] in the title still wins, then this map, then the title rules. Empty = title rules only, Outlook is not asked."
+    },
+    "default_period": "calendar_year"
+  },
+  "planner": {
+    "_note": "Plan blocks (P). calendar: name of the EventKit calendar picked by default; empty = the Exchange 'Calendar'. buffer_minutes: kept free next to meetings. outlook: book blocks in the Outlook calendar through Microsoft Outlook, so a category can be set (EventKit cannot). outlook_account: empty = the first Exchange account. outlook_calendar: the calendar name in Outlook. outlook_categories: the categories to offer, in this order; empty = every category Outlook knows (including its built-in ones).",
+    "calendar": "",
+    "buffer_minutes": 15,
+    "outlook": false,
+    "outlook_account": "",
+    "outlook_calendar": "Calendar",
+    "outlook_categories": []
+  },
+  "weather": {
+    "_note": "Weather in the greeting, from Open-Meteo (free, no key). Only these coordinates are sent; fetched at most every 30 min. enabled false turns it off.",
+    "enabled": false,
+    "place": "",
+    "lat": 0,
+    "lon": 0
+  },
+  "alarms": {
+    "mac_notify": true,
+    "mac_sound": "Glass",
+    "sound_repeats": 3,
+    "snooze_minutes": 5
+  }
+}
