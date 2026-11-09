@@ -2,7 +2,7 @@
 
 **One local page for the whole working week on macOS.** Calendar, Reminders, Obsidian tasks and notes, and Jira issues side by side, refreshed in the background, with search and commands, time statistics, a weekly review, an 8-week load forecast, time blocking, quick capture and meeting prep built in.
 
-![Week view with dummy data](docs/screenshots/week.png)
+<p align="center"><img src="docs/hero.png" width="540" alt="Work Dashboard: calendar, reminders, Obsidian and Jira in one dashboard on your Mac"></p>
 
 <sub>All screenshots use made-up demo data (`demo/`), not real calendar content. Each one shows the whole page: the window is grown until no panel has anything left to scroll.</sub>
 
