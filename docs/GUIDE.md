@@ -1,6 +1,6 @@
 # Work Dashboard: User Guide
 
-Version 0.70. This guide walks through every part of the dashboard, one feature at a time, with a screenshot of each.
+Version 1.0.0. This guide walks through every part of the dashboard, one feature at a time, with a screenshot of each.
 
 > **All screenshots use made-up demo data** (`demo/demo_data.py`, the persona "Alex"). No real calendar, reminder, note or Jira content appears anywhere in this repository. Each screenshot shows the whole page: the window is grown until no panel has anything left to scroll. To reproduce them, see [Regenerating the screenshots](#regenerating-the-screenshots).
 
