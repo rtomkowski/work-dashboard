@@ -1,0 +1,126 @@
+<!doctype html>
+<!-- Work Dashboard. Copyright (c) 2026 Robert Tomkowski. MIT License (see the LICENSE file). Developed with the assistance of Claude Code (Anthropic). -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Work Dashboard: your whole week on one page</title>
+<meta name="description" content="A free, local dashboard for macOS: Calendar, Reminders, Obsidian and Jira in one page, with time statistics, a weekly review, an 8-week forecast and time blocking. Runs on your own Mac.">
+<meta property="og:title" content="Work Dashboard: your whole week on one page">
+<meta property="og:description" content="Calendar, Reminders, Obsidian and Jira in one local dashboard on your Mac. Free and open source.">
+<meta property="og:image" content="https://rtomkowski.github.io/work-dashboard/hero.png">
+<meta property="og:url" content="https://rtomkowski.github.io/work-dashboard/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='2' y='3' width='20' height='18' rx='4' fill='%235a54d6'/%3E%3Crect x='5' y='7' width='5' height='11' rx='1.5' fill='%23fff'/%3E%3Crect x='12' y='7' width='7' height='4' rx='1.5' fill='%23fff'/%3E%3Crect x='12' y='13' width='7' height='5' rx='1.5' fill='%23a9a5ff'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<header class="topbar"><div class="in">
+  <a class="brand" href="./"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="3" width="20" height="18" rx="4" fill="#5a54d6"/><rect x="5" y="7" width="5" height="11" rx="1.5" fill="#fff"/><rect x="12" y="7" width="7" height="4" rx="1.5" fill="#fff"/><rect x="12" y="13" width="7" height="5" rx="1.5" fill="#a9a5ff"/></svg>Work Dashboard</a>
+  <nav aria-label="Site">
+    <a href="./" aria-current="page">Home</a>
+    <a href="anatomy/">Anatomy</a>
+    <a href="https://github.com/rtomkowski/work-dashboard/blob/main/docs/GUIDE.md">Guide</a>
+    <a href="#install">Install</a>
+    <a href="https://github.com/rtomkowski/work-dashboard">GitHub</a>
+  </nav>
+</div></header>
+
+<main>
+  <section class="hero">
+    <div class="in">
+      <div style="padding-bottom:56px">
+        <h1>Your whole week on <em>one&nbsp;page.</em></h1>
+        <p class="lede">Work Dashboard brings your meetings, to-dos, notes and issues together in one local page on your Mac.
+          See what is coming, where the time goes, and act on it without switching between four apps.</p>
+        <ul class="chips" aria-label="Sources">
+          <li style="--c:#e5484d">Calendar</li><li style="--c:#f08c00">Reminders</li><li style="--c:#8e5cf0">Obsidian</li><li style="--c:#2f6fe0">Jira</li>
+        </ul>
+        <div class="cta">
+          <a class="btn primary" href="#install">Install on your Mac</a>
+          <a class="btn ghost" href="anatomy/">Explore the anatomy</a>
+          <a class="btn ghost" href="https://github.com/rtomkowski/work-dashboard">GitHub</a>
+        </div>
+        <p class="small">Free and open source (MIT). For macOS 13 or later. Runs on 127.0.0.1, on your own Mac. Works on iPhone and iPad too.</p>
+      </div>
+      <div class="shot"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><img src="images/week.webp" alt="The Week view: meetings, tasks and notes per day, with booked hours, a month calendar, Now and Next, and up-next tasks" width="1440" height="900"></div>
+    </div>
+  </section>
+
+  <section class="block">
+    <h2>Made for weeks with too many moving parts</h2>
+    <p class="sub">For researchers, teachers, engineers and managers whose day lives in a calendar, a to-do list, a notes vault and an issue tracker at once.</p>
+    <div class="grid3">
+      <div class="feature" style="--c:var(--indigo)"><h3>Everything in one agenda</h3><p>Exchange and iCloud meetings, Apple Reminders, Obsidian tasks and Jira issues in Day, Week, Month and Year views, coloured by Outlook category.</p></div>
+      <div class="feature" style="--c:var(--orange)"><h3>Warns before it gets tight</h3><p>No lunch break, back-to-back stretches, overlaps and overbooked days, plus a 30-day deadline radar from Jira, notes and calendar titles.</p></div>
+      <div class="feature" style="--c:var(--green)"><h3>Where the time goes</h3><p>Statistics group calendar time by your own title rules. Ahead forecasts the next 8 weeks and finds the best week for focused work.</p></div>
+      <div class="feature" style="--c:var(--blue)"><h3>Act from the page</h3><p>Plan focus blocks, add reminders in batches, create notes and Jira issues, triage your Inbox and log focus time. Every batch has Undo.</p></div>
+      <div class="feature" style="--c:var(--purple)"><h3>Find anything with ⌘K</h3><p>Search events, tasks, Jira issues and the full text of your notes, and run every command from the keyboard.</p></div>
+      <div class="feature" style="--c:var(--teal)"><h3>A weekly review that writes itself</h3><p>What got done, what slipped and how next week looks, saved to Obsidian every Friday afternoon as a visual note.</p></div>
+    </div>
+  </section>
+
+  <div class="band"><section class="block">
+    <h2>A closer look</h2>
+    <p class="sub">Every screenshot uses made-up demo data. Click one for the full page.</p>
+    <div class="shots">
+      <figure><a href="screenshots/event-panel.png"><img src="images/event-panel.webp" alt="Day view with the event detail panel open" width="1440" height="900" loading="lazy"></a><figcaption><b>Day and event panel.</b> Attendees, Join link, notes and the Jira issues a meeting mentions.</figcaption></figure>
+      <figure><a href="screenshots/week-grid.png"><img src="images/week-grid.webp" alt="Week view as a time grid with free gaps and a now line" width="1440" height="900" loading="lazy"></a><figcaption><b>Week grid.</b> Free gaps of an hour or more, overlaps side by side, a live now line.</figcaption></figure>
+      <figure><a href="screenshots/board.png"><img src="images/board.webp" alt="Board with Backlog, To Do, Doing and Done columns across all sources" width="1440" height="900" loading="lazy"></a><figcaption><b>Board.</b> One kanban for reminders, notes and Jira. Dragging a Jira card changes its status.</figcaption></figure>
+      <figure><a href="screenshots/stats-history.png"><img src="images/stats-history.webp" alt="Statistics: booked time by group compared with the previous period" width="1440" height="900" loading="lazy"></a><figcaption><b>Statistics.</b> Teaching, projects, papers and admin, compared with the previous period.</figcaption></figure>
+      <figure><a href="screenshots/stats-ahead.png"><img src="images/stats-ahead.webp" alt="Ahead: forecast load for the next eight weeks" width="1440" height="900" loading="lazy"></a><figcaption><b>Ahead.</b> Booked now plus the late additions your calendar usually gets.</figcaption></figure>
+      <figure><a href="screenshots/weekly-review.png"><img src="images/weekly-review.webp" alt="Weekly review: done, slipped, booked hours and next week" width="1440" height="900" loading="lazy"></a><figcaption><b>Weekly review.</b> Done, slipped, time by group and the week ahead.</figcaption></figure>
+      <figure><a href="screenshots/palette.png"><img src="images/palette.webp" alt="Command palette searching events, tasks, issues and notes" width="1440" height="900" loading="lazy"></a><figcaption><b>Search and commands.</b> ⌘K, or type <code>+</code> to capture a line into Obsidian.</figcaption></figure>
+      <figure><a href="screenshots/week-dark.png"><img src="images/week-dark.webp" alt="The Week view in the dark theme" width="1440" height="900" loading="lazy"></a><figcaption><b>Dark theme and profiles.</b> Five starting layouts, from Focus today to Phone glance.</figcaption></figure>
+    </div>
+    <p class="more">Want to know what every part of the page does? Hover over the <a href="anatomy/">interactive anatomy</a>, or read the <a href="https://github.com/rtomkowski/work-dashboard/blob/main/docs/GUIDE.md">full user guide</a> with a screenshot of every feature.</p>
+  </section></div>
+
+  <section class="block" id="install">
+    <h2>Start in five minutes</h2>
+    <ol class="steps">
+      <li><b>Check your Mac</b>macOS 13 or later, with Python 3 and git from Apple's Command Line Tools.</li>
+      <li><b>Download</b>Clone the repository from GitHub, or <a href="https://github.com/rtomkowski/work-dashboard/archive/refs/heads/main.zip">download the ZIP</a>.</li>
+      <li><b>Run the installer</b><code>./install.sh</code> asks which parts you use: Obsidian, Jira, Outlook, weather, iPhone and iPad.</li>
+      <li><b>Open it</b>Bookmark <code>127.0.0.1:8765</code>, or add it to the Home Screen of your iPhone through Tailscale.</li>
+    </ol>
+<pre class="cmd"><span class="c"># in Terminal</span>
+git clone https://github.com/rtomkowski/work-dashboard.git ~/work-dashboard
+cd ~/work-dashboard &amp;&amp; ./install.sh</pre>
+    <p class="note">Just curious? <code>python3 demo/serve_demo.py</code> runs the real page with generated demo data, without touching your calendar or writing anything to disk. Step by step, with troubleshooting: <a href="https://github.com/rtomkowski/work-dashboard/blob/main/INSTALL.md">INSTALL.md</a>.</p>
+  </section>
+
+  <div class="band"><section class="block">
+    <h2>What you need</h2>
+    <div class="req">
+      <div><h3>Required</h3><ul><li>A Mac with macOS 13 (Ventura) or later</li><li>Python 3.9+ and git (Command Line Tools)</li><li>Apple Calendar and/or Reminders with your accounts</li><li>Any web browser</li></ul></div>
+      <div><h3>Optional, each one can be turned off</h3><ul><li>Obsidian: tasks, notes, capture and the weekly review</li><li>Jira Cloud: issues, Board moves, new issues, worklogs</li><li>Microsoft Outlook: category colours and booking with a category</li><li>Tailscale: private access from iPhone and iPad</li></ul></div>
+    </div>
+  </section></div>
+
+  <section class="block">
+    <h2>Documentation</h2>
+    <div class="downloads">
+      <a href="https://github.com/rtomkowski/work-dashboard/blob/main/docs/GUIDE.md"><b>User guide</b><span>Every view and dialog, with screenshots</span></a>
+      <a href="anatomy/"><b>Dashboard anatomy</b><span>An interactive map of the page</span></a>
+      <a href="https://github.com/rtomkowski/work-dashboard/blob/main/INSTALL.md"><b>Install guide</b><span>Requirements, setup and troubleshooting</span></a>
+      <a href="https://github.com/rtomkowski/work-dashboard/archive/refs/heads/main.zip"><b>Source (ZIP)</b><span>The latest version from GitHub</span></a>
+      <a href="hero.png"><b>Poster (PNG)</b><span>One image that sums it up</span></a>
+      <a href="https://github.com/rtomkowski/work-dashboard/blob/main/CHANGELOG.md"><b>Changelog</b><span>Version 1.0.0, November 2026</span></a>
+    </div>
+  </section>
+
+  <section class="block" style="padding-top:0">
+    <div class="privacy">
+      <svg width="34" height="34" viewBox="0 0 24 24" aria-hidden="true" style="flex:none"><path d="M12 2l8 3v6c0 5-3.4 9.4-8 11-4.6-1.6-8-6-8-11V5z" fill="none" stroke="#2a8a5e" stroke-width="2"/><path d="M8.5 12l2.5 2.5 4.5-5" fill="none" stroke="#2a8a5e" stroke-width="2"/></svg>
+      <div><b>Your calendar stays on your Mac.</b> The dashboard runs on 127.0.0.1, with an access token on every request as a second layer behind Tailscale. Calendar content never leaves the Mac; only Jira API calls and the weather coordinates go out. It never edits or deletes anything it did not create, apart from the few documented exceptions such as moving a Jira card. This website stores nothing and has no demo of your data: all screenshots are fictional.</div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  © 2026 Robert Tomkowski · <a href="https://github.com/rtomkowski/work-dashboard/blob/main/LICENSE">MIT License</a> ·
+  Developed with the assistance of Claude Code · <a href="https://github.com/rtomkowski/work-dashboard">Source on GitHub</a> ·
+  See also <a href="https://rtomkowski.github.io/yearwheel/">Year Wheel</a>
+</footer>
+</body>
+</html>
