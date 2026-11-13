@@ -8,7 +8,6 @@ REPO=https://github.com/rtomkowski/work-dashboard/blob/main
 # Links that point outside docs/ (../README.md and so on) go to the files on GitHub.
 BODY=$(sed -E "s#\]\(\.\./([^)]*)\)#](${REPO}/\1)#g" GUIDE.md | pandoc -f gfm -t html5)
 
-ICON="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='2' y='3' width='20' height='18' rx='4' fill='%235a54d6'/%3E%3Crect x='5' y='7' width='5' height='11' rx='1.5' fill='%23fff'/%3E%3Crect x='12' y='7' width='7' height='4' rx='1.5' fill='%23fff'/%3E%3Crect x='12' y='13' width='7' height='5' rx='1.5' fill='%23a9a5ff'/%3E%3C/svg%3E"
 
 {
 cat <<EOF
@@ -20,7 +19,10 @@ cat <<EOF
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Work Dashboard User Guide</title>
 <meta name="description" content="Every view, dialog and action of Work Dashboard, one feature at a time, with a screenshot of each.">
-<link rel="icon" href="${ICON}">
+<link rel="icon" href="favicon.ico" sizes="32x32">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="stylesheet" href="topbar.css?v=2">
 <link rel="stylesheet" href="site.css?v=2">
 </head>
