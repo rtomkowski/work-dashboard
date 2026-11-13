@@ -26,13 +26,7 @@ a { color: var(--accent); }
 img { max-width: 100%; height: auto; }
 code { font: 14px/1.4 var(--mono); background: var(--card); border: 1px solid var(--line); padding: 0 4px; border-radius: 4px; }
 
-/* Top bar */
-.topbar { position: sticky; top: 0; z-index: 10; background: var(--navy); color: #fff; }
-.topbar .in { max-width: 1120px; margin: 0 auto; padding: 10px 20px; display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
-.topbar .brand { display: flex; align-items: center; gap: 10px; color: #fff; text-decoration: none; font-weight: 700; letter-spacing: .02em; }
-.topbar nav { margin-left: auto; display: flex; gap: 4px; flex-wrap: wrap; }
-.topbar nav a { color: #d9d8f5; text-decoration: none; padding: 6px 10px; border-radius: 6px; font-size: 15px; }
-.topbar nav a:hover, .topbar nav a[aria-current] { background: rgba(255,255,255,.12); color: #fff; }
+/* The top menu lives in topbar.css, shared with the guide and anatomy pages. */
 
 /* Hero */
 .hero { background: var(--navy); color: #fff; padding: 56px 20px 0; overflow: hidden;
@@ -99,3 +93,20 @@ footer { max-width: 1120px; margin: 0 auto; padding: 30px 20px 50px; color: var(
   .steps { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 520px) { .steps { grid-template-columns: 1fr; } }
+
+/* Online guide (built from GUIDE.md by build-guide.sh) */
+.guide { max-width: 860px; margin: 0 auto; padding: 36px 20px 60px; }
+.guide h1 { font-size: 40px; letter-spacing: -.02em; line-height: 1.1; margin: 0 0 10px; }
+.guide h2 { font-size: 26px; margin: 46px 0 10px; padding-top: 14px; border-top: 3px solid var(--indigo); scroll-margin-top: 96px; }
+.guide h3 { font-size: 19px; margin: 28px 0 8px; scroll-margin-top: 96px; }
+.guide hr { display: none; }
+.guide blockquote { margin: 16px 0; padding: 12px 16px; background: var(--card); border: 1px solid var(--line); border-left: 4px solid var(--indigo); border-radius: 8px; color: var(--muted); }
+.guide blockquote p { margin: 0; }
+.guide img { border: 1px solid var(--line); border-radius: 10px; display: block; margin: 14px 0 22px; }
+.guide table { border-collapse: collapse; width: 100%; margin: 12px 0 20px; font-size: 15px; display: block; overflow-x: auto; }
+.guide th, .guide td { border-bottom: 1px solid var(--line); padding: 7px 10px; text-align: left; vertical-align: top; }
+.guide th { background: var(--card); }
+.guide pre { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; overflow-x: auto; }
+.guide pre code { border: 0; padding: 0; background: none; }
+.guide .back { font-size: 14px; margin: 0 0 6px; }
+.totop { position: fixed; right: 16px; bottom: 16px; background: var(--card); border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px; font-size: 14px; text-decoration: none; box-shadow: 0 2px 8px rgba(0,0,0,.12); }

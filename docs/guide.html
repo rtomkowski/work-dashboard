@@ -1,0 +1,894 @@
+<!doctype html>
+<!-- Work Dashboard. Copyright (c) 2026 Robert Tomkowski. MIT License. Generated from GUIDE.md by build-guide.sh: edit GUIDE.md, not this file. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Work Dashboard User Guide</title>
+<meta name="description" content="Every view, dialog and action of Work Dashboard, one feature at a time, with a screenshot of each.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='2' y='3' width='20' height='18' rx='4' fill='%235a54d6'/%3E%3Crect x='5' y='7' width='5' height='11' rx='1.5' fill='%23fff'/%3E%3Crect x='12' y='7' width='7' height='4' rx='1.5' fill='%23fff'/%3E%3Crect x='12' y='13' width='7' height='5' rx='1.5' fill='%23a9a5ff'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="topbar.css">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+<header class="topbar"><div class="in">
+  <a class="brand" href="./"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="3" width="20" height="18" rx="4" fill="#5a54d6"/><rect x="5" y="7" width="5" height="11" rx="1.5" fill="#fff"/><rect x="12" y="7" width="7" height="4" rx="1.5" fill="#fff"/><rect x="12" y="13" width="7" height="5" rx="1.5" fill="#a9a5ff"/></svg>Work Dashboard</a>
+  <nav aria-label="Site">
+    <a href="./">Home</a>
+    <a href="guide.html" aria-current="page">Guide</a>
+    <a href="anatomy/">Anatomy</a>
+    <a href="./#install">Install</a>
+    <a href="https://github.com/rtomkowski/work-dashboard">GitHub</a>
+  </nav>
+</div></header>
+<main class="guide" id="top">
+<h1 id="work-dashboard-user-guide">Work Dashboard: User Guide</h1>
+<p>Version 0.70. This guide walks through every part of the dashboard,
+one feature at a time, with a screenshot of each.</p>
+<blockquote>
+<p><strong>All screenshots use made-up demo data</strong>
+(<code>demo/demo_data.py</code>, the persona "Alex"). No real calendar,
+reminder, note or Jira content appears anywhere in this repository. Each
+screenshot shows the whole page: the window is grown until no panel has
+anything left to scroll. To reproduce them, see <a
+href="#regenerating-the-screenshots">Regenerating the
+screenshots</a>.</p>
+</blockquote>
+<p>The <a
+href="https://github.com/rtomkowski/work-dashboard/blob/main/README.md">README</a>
+is the short reference (install, files, every config key). This guide is
+the long version: what you see, what each control does, and what each
+action changes.</p>
+<h2 id="contents">Contents</h2>
+<ol type="1">
+<li><a href="#1-getting-started">Getting started</a></li>
+<li><a href="#2-the-screen-at-a-glance">The screen at a glance</a></li>
+<li><a href="#3-views">Views</a>
+<ul>
+<li><a href="#day">Day</a> · <a href="#event-panel">Event panel</a> · <a
+href="#meeting-prep">Meeting prep</a> · <a href="#week">Week</a> · <a
+href="#month">Month</a> · <a href="#year">Year</a> · <a
+href="#board">Board</a> · <a href="#overdue">Overdue</a> · <a
+href="#statistics-history">Statistics: History</a> · <a
+href="#statistics-ahead">Statistics: Ahead</a> · <a
+href="#weekly-review">Weekly review</a></li>
+</ul></li>
+<li><a href="#4-search-commands-and-quick-capture">Search, commands and
+quick capture</a></li>
+<li><a href="#5-creating-things-from-the-page">Creating things from the
+page</a>
+<ul>
+<li><a href="#new-reminders">New reminders</a> · <a
+href="#plan-blocks">Plan blocks</a> · <a href="#new-note">New note</a> ·
+<a href="#inbox-triage">Inbox triage</a> · <a href="#new-jira-issue">New
+Jira issue</a></li>
+</ul></li>
+<li><a href="#6-timers">Timers</a>
+<ul>
+<li><a href="#countdown">Countdown</a> · <a
+href="#focus-timer-with-jira-worklog">Focus timer with Jira
+worklog</a></li>
+</ul></li>
+<li><a href="#7-the-right-panel">The right panel</a></li>
+<li><a href="#8-settings-and-profiles">Settings and profiles</a></li>
+<li><a href="#9-data-sources-and-health">Data sources and
+health</a></li>
+<li><a href="#10-ipad-and-iphone">iPad and iPhone</a></li>
+<li><a href="#11-dark-theme">Dark theme</a></li>
+<li><a href="#12-keyboard-shortcuts">Keyboard shortcuts</a></li>
+<li><a href="#13-what-the-dashboard-may-change">What the dashboard may
+change</a></li>
+<li><a href="#14-troubleshooting">Troubleshooting</a></li>
+<li><a href="#regenerating-the-screenshots">Regenerating the
+screenshots</a></li>
+</ol>
+<hr />
+<h2 id="1-getting-started">1. Getting started</h2>
+<p><strong>Open it.</strong> On the Mac: <strong><a
+href="http://127.0.0.1:8765">http://127.0.0.1:8765</a></strong>
+(bookmark it). The server runs in the background under launchd
+(<code>local.workdashboard</code>), starts at login and restarts itself
+if it stops.</p>
+<p><strong>On the iPad or iPhone.</strong> Through Tailscale:
+<code>tailscale serve</code> forwards to port 8765, so the Mac's
+Tailscale address opens the same page. In Safari, Share &gt; Add to Home
+Screen opens it full screen as "Work". Each device enrols once with the
+access token link. See <a href="#10-ipad-and-iphone">iPad and
+iPhone</a>.</p>
+<p><strong>Full screen on the Mac or iPad.</strong> The full screen
+button in the toolbar (four corners, left of the right panel toggle) or
+<code>F</code> hides the browser's address bar, tabs and menu bar.
+<code>Esc</code>, <code>F</code> or the button bring them back. Browsers
+only allow full screen after a click or key press, so it never starts by
+itself when the page loads. <code>F</code> does nothing while you type
+in a field or a dialog is open. On the iPhone the button is hidden
+(Safari has no full screen for pages there).</p>
+<p><strong>Try it without your data.</strong> The demo serves the real
+<code>dashboard.html</code> with generated data, dates relative to
+today:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> demo/serve_demo.py      <span class="co"># then open http://127.0.0.1:8766</span></span></code></pre></div>
+<p>The demo writes nothing to disk and sends nothing anywhere. Board
+moves, new notes, capture, Inbox triage, new Jira issues, the focus
+timer and the countdown work in memory until the demo stops; Plan
+blocks, New reminders and Settings &gt; Save are refused.</p>
+<p><strong>How fresh is the data?</strong> Calendar, Reminders and Jira
+are read every 5 minutes (<code>refresh_minutes</code>) and right after
+anything you create from the page. Obsidian edits show within about 20
+seconds (the server watches file times every
+<code>obsidian.watch_seconds</code>). The Refresh button or the palette
+command "Refresh" reads everything now.</p>
+<hr />
+<h2 id="2-the-screen-at-a-glance">2. The screen at a glance</h2>
+<p><img src="guide/05-week.png"
+alt="Week view, the default layout" /></p>
+<p>The page has four areas:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Area</th>
+<th>What is in it</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Greeting bar</strong> (top)</td>
+<td>Good morning/afternoon, how many meetings are still ahead, tasks due
+today, overdue count in red, and the local weather (Open-Meteo, only the
+coordinates leave the Mac). Today's date shows here only when the right
+panel clock is not visible. Under the weather sits the <strong>view
+switcher</strong>: icons for all eight views (Day, Week, Month, Year,
+Board, Overdue, Statistics, Weekly review) with counts as small badges
+(events today, events this week, Doing, and overdue in red); names
+appear when there is room. If the greeting is turned off, the switcher
+moves into the toolbar.</td>
+</tr>
+<tr class="even">
+<td><strong>Left sidebar</strong></td>
+<td>Source sections <strong>Calendars</strong>, <strong>Reminder
+lists</strong>, <strong>Obsidian</strong>, <strong>Jira</strong> (per
+Epic), each with an on/off switch and one filter row per calendar, list
+or Epic; at the bottom the profile picker, Save, the version, and the
+four health dots. Sections fold. <code>[</code> hides the sidebar.</td>
+</tr>
+<tr class="odd">
+<td><strong>Toolbar</strong></td>
+<td>Left: sidebar toggle, search (magnifier), ‹ Today › and the period
+title. Right, aligned to the edge: Plan blocks, New note, <strong>+ New
+reminder</strong>, countdown (stopwatch), the focus timer chip when it
+runs, <strong>full screen</strong> (four corners; <code>F</code>) and
+the right panel toggle.</td>
+</tr>
+<tr class="even">
+<td><strong>Right panel</strong></td>
+<td>Clock and month calendar, booked hours for the next 14 days, Now /
+Next, today's numbers, Up next, pinned notes, deadlines, heads-up
+warnings, next meeting. <code>]</code> hides it. See <a
+href="#7-the-right-panel">The right panel</a>.</td>
+</tr>
+</tbody>
+</table>
+<p>Colours carry meaning: each calendar, list and Epic keeps its own
+colour everywhere, except that Exchange meetings with an <strong>Outlook
+category</strong> take that category's colour, as in Outlook (the first
+category with a colour wins; text turns dark on pale colours);
+<strong>red is used only for overdue</strong>; amber marks warnings
+(overlaps, no lunch, long stretches).</p>
+<hr />
+<h2 id="3-views">3. Views</h2>
+<p>Switch with the view switcher under the weather, the keys
+<code>D</code> <code>W</code> <code>M</code> <code>Y</code>
+<code>B</code> <code>O</code> <code>S</code> <code>V</code>, or the
+palette. <code>←</code> <code>→</code> step to the previous or next
+period, <code>T</code> jumps to today.</p>
+<h3 id="day">Day</h3>
+<p><img src="guide/02-day.png" alt="Day view" /></p>
+<p>A timeline of the day with the current time as a red line. Meetings
+sit in the timeline; tasks are listed beside it in groups:
+<strong>Overdue</strong>, <strong>Due today</strong> and
+<strong>Someday</strong> (undated tasks), followed by
+<strong>Notes</strong> edited recently. The header shows the meeting
+count and booked hours, plus load warnings for the day ("No lunch
+break", "3.5 h without a break").</p>
+<p>Every item is a link: a reminder opens in Apple Reminders, an
+Obsidian task or note in Obsidian, a Jira issue in Jira.</p>
+<h3 id="event-panel">Event panel</h3>
+<p><img src="guide/03-event-panel.png"
+alt="Day view with the event panel open" /></p>
+<p>Click a meeting in the Day view and its details open in a panel
+beside the timeline. The panel stays open while you work and ‹ › step
+through the day's events; Esc or ✕ closes it.</p>
+<p>It shows the time with a "starts in" badge, the recurrence, location,
+organizer, a <strong>Join</strong> button for Teams, Zoom or Meet links,
+<strong>Meeting note</strong>, <strong>Copy details</strong> and
+<strong>Show in Calendar</strong> (opens Calendar.app on that day; on
+iPad and iPhone the Calendar app). Below, foldable sections:
+<strong>Attendees</strong> with their RSVP answers,
+<strong>Notes</strong> with clickable links, and
+<strong>Linked</strong>: Jira issues and Obsidian notes that the event
+mentions.</p>
+<p>Events that collide get "Overlaps another event". Copies of the same
+event from subscribed or course feed calendars (e.g.
+<code>MG2045-HT26</code>) collapse into one entry: your own entry plus
+one feed entry per slot with the room.</p>
+<h3 id="meeting-prep">Meeting prep</h3>
+<p><img src="guide/04-meeting-prep.png"
+alt="Event panel with the Prep section" /></p>
+<p>For a recurring meeting the panel adds <strong>Prep</strong>: when
+the series last took place, earlier notes of the series (notes named
+<code>YYYY-MM-DD Title</code>, which is what Meeting note creates), open
+Jira issues named in the event or belonging to an Epic named in its
+title, and related notes. The same information appears in the right
+panel block <strong>Next meeting</strong> for the next meeting today or
+tomorrow, with <strong>Meeting note</strong> (or <strong>Open meeting
+note</strong>) and <strong>Linked note</strong> buttons.</p>
+<p>Related notes are explicit links only, so nothing unrelated shows up.
+A note belongs to a meeting when:</p>
+<ul>
+<li>its properties have <code>meeting: &lt;meeting title&gt;</code>
+(several meetings as a list;
+<code>meeting: "[[2026-11-05 Steering group]]"</code> also works, the
+date is ignored), or</li>
+<li>a meeting note of the series (<code>type: meeting</code>,
+<code>event: &lt;title&gt;</code>, as Meeting note writes) links to it
+with <code>[[...]]</code>, including notes outside the dashboard
+folders.</li>
+</ul>
+<p>The match is on the series title (case, accents and punctuation
+ignored), so a note linked once shows for every occurrence.
+<strong>Linked note</strong> in the event panel or the Next meeting
+block creates a note with any template and writes <code>meeting:</code>
+for you.</p>
+<p><strong>Meeting note</strong> creates a note pre-filled with the
+date, time, place and attendees, in the meeting folder
+(<code>obsidian.meeting_folder</code>).</p>
+<h3 id="week">Week</h3>
+<p><img src="guide/05-week.png" alt="Week view" /></p>
+<p>A <strong>List / Grid</strong> switch at the top picks the layout;
+the choice is kept per browser.</p>
+<p><strong>List</strong> is an agenda per day: meetings with time, place
+and Join link, then tasks due that day. Days of the current week that
+have already passed fold into a single "Show earlier day" row. Each day
+has a <strong>load bar</strong> (booked hours against a full day, set in
+Settings &gt; Workday) and amber chips for overlaps, no lunch break or
+long stretches without a break.</p>
+<p><img src="guide/05b-week-grid.png"
+alt="Week view as a time grid" /></p>
+<p><strong>Grid</strong> is a time grid with the hours down the left.
+<strong>From / To</strong> above the grid set the hours shown (default
+07:00 to 19:00): type a time in either field and press Enter or click
+away, or pick one from the half-hour list that opens when you click into
+the field or on ▾ (↑ / ↓ step 30 minutes). Any minute works, written as
+7:30, 7.30, 0730, 730 or just 8; the end can be 24. The grid needs at
+least 30 minutes, and a time it cannot read is not applied (the field
+flashes red and goes back). Esc restores the field. Monday to Friday
+always show; Saturday and Sunday only when they hold something. Events
+sit at their times; overlapping events share the column width and get a
+warning outline. Events outside the hours shown are listed in the All
+day row with an up or down arrow and their start time. Gaps of an hour
+or more on weekdays (from now on, inside the hours shown) are marked "x
+h free"; events marked free, such as lunch, count as taken. A
+<strong>red now line</strong> runs across the week with the time at the
+hour column. Due tasks and notes sit in a row under the grid. Click an
+event to open its day with the event panel, or a day heading to open
+that day. In a narrow window the warning chips in each day heading fold
+into one warning mark with a count; hover it for the details.</p>
+<h3 id="month">Month</h3>
+<p><img src="guide/06-month.png" alt="Month view" /></p>
+<p>A calendar grid with meetings, all-day items and tasks per day, and a
+count of hidden items. Clicking a month in the Year view lands here.</p>
+<h3 id="year">Year</h3>
+<p><img src="guide/07-year.png" alt="Year view" /></p>
+<p>Twelve mini months, each day shaded by booked hours (legend at the
+top). All-day items such as holidays and vacations are marked. It is
+meant for spotting heavy and light periods at a glance. Click a month to
+open it.</p>
+<h3 id="board">Board</h3>
+<p><img src="guide/08-board.png" alt="Board" /></p>
+<p>Four columns across every source: <strong>Backlog</strong>,
+<strong>To Do</strong>, <strong>Doing</strong>,
+<strong>Done</strong>.</p>
+<ul>
+<li><strong>Jira cards</strong> follow their Jira status. Dragging one
+to another column changes the status in Jira (on touch screens, use ⇄).
+A Jira card has <strong>▶</strong> to start the <a
+href="#focus-timer-with-jira-worklog">focus timer</a> and shows the two
+latest Obsidian notes that mention its key.</li>
+<li><strong>Reminder and Obsidian cards</strong> are placed
+automatically (overdue or due within 7 days goes to To Do, the rest to
+Backlog). Moving them only changes the dashboard's own memory
+(<code>data/kanban.json</code>); the reminder or note is never touched.
+Done hides a task from the other views. These cards have <strong>→
+Jira</strong> to turn them into a Jira issue.</li>
+<li>Done shows completed items from the last 14 days.</li>
+</ul>
+<h3 id="overdue">Overdue</h3>
+<p><img src="guide/09-overdue.png" alt="Overdue view" /></p>
+<p>Everything with a due date in the past, from every source, oldest
+first. The red overdue counts in the greeting, on the view switcher and
+in the right panel link here.</p>
+<h3 id="statistics-history">Statistics: History</h3>
+<p><img src="guide/10-stats-history.png"
+alt="Statistics, History" /></p>
+<p>Where the calendar time went. Pick a period (Last week, Last month,
+This year, Last 12 months, or Custom). The top line is a plain-language
+summary; below are the key figures (booked hours, median per working
+week, utilisation, free 2 h focus blocks per week, working weeks)
+compared with the previous period.</p>
+<p>The donut shows the share of booked time by <strong>Group</strong> or
+<strong>Category</strong>; the bar chart shows booked hours per week,
+stacked by group. Click a week to mark it as vacation, so it is left out
+of the weekly figures.</p>
+<p>Categories come from rules on event titles (<code>config.json</code>
+&gt; <code>stats.groups</code>, regular expressions, first match wins).
+A category name in brackets at the end of a title wins over the rules:
+"Report writing [Projects]". <code>Absence</code> marks time off,
+<code>Ignore</code> is not counted, anything unmatched is
+<code>Uncategorized</code>. Only the aggregates reach the page.</p>
+<h3 id="statistics-ahead">Statistics: Ahead</h3>
+<p><img src="guide/11-stats-ahead.png" alt="Statistics, Ahead" /></p>
+<p>The next 8 weeks. For each week: hours available, hours booked now,
+and the <strong>expected</strong> load, which adds the late additions
+your calendar usually gets at that lead time (learned from the creation
+dates of the last 26 weeks of events). The summary names the best week
+for focused work. The donut shows how the available time is expected to
+be used; the chart shows booked, expected and free hours per week, with
+whiskers for the spread between quieter and busier weeks.</p>
+<p>If fewer than 60% of past events have a usable creation date, Ahead
+uses recent comparable weeks instead and says so.</p>
+<h3 id="weekly-review">Weekly review</h3>
+<p><img src="guide/12-weekly-review.png" alt="Weekly review" /></p>
+<p>One page per ISO week (‹ › step by week): figures at the top (done,
+slipped, booked hours, meetings, notes touched, booked next week), then
+<strong>Done</strong> (Jira and reminders), <strong>Slipped</strong>,
+<strong>Calendar time by group</strong>, <strong>Notes</strong> created
+and edited, and <strong>Next week</strong>.</p>
+<ul>
+<li><strong>Copy as Markdown</strong> puts the review on the
+clipboard.</li>
+<li><strong>Save as weekly note</strong> writes
+<code>YYYY-Www Weekly review</code> into
+<code>obsidian.review_folder</code> (default
+<code>Inbox/WorkDashboard</code>). The note is visual: the numbers as
+frontmatter properties (so Obsidian Bases can compare weeks;
+<code>Weekly reviews.base</code> sits in the same folder), a summary
+callout, a Mermaid pie of hours by group, a Mermaid chart of hours per
+day, callouts for Done, Slipped, Notes and Next week, and an empty
+Reflection section to fill in.</li>
+<li><strong>Automatic:</strong> with <code>obsidian.review_auto</code>
+on, the review writes itself after Friday at
+<code>review_auto_hour</code> (16:00) the next time any page is open,
+once per week, never over an existing note.</li>
+</ul>
+<p>Calendar content in the review stays at group level (hours per group
+and per day); no meeting titles.</p>
+<hr />
+<h2 id="4-search-commands-and-quick-capture">4. Search, commands and
+quick capture</h2>
+<h3 id="search-and-commands">Search and commands</h3>
+<p><img src="guide/13-palette-search.png"
+alt="Command palette searching for &quot;lab&quot;" /></p>
+<p><code>⌘K</code> (or <code>/</code> when not typing, or the magnifier)
+opens the palette.</p>
+<ul>
+<li><strong>Empty</strong>, it lists every command with its shortcut:
+views, Today, New reminder, New note, Plan blocks, Countdown, Refresh,
+Data sources, Settings, side panels, theme, each profile, and Meeting
+note for the next meeting.</li>
+<li><strong>Typing</strong> searches commands, <strong>events</strong>
+(title, place, calendar, organizer, attendees, notes; upcoming first),
+<strong>tasks and issues</strong>, <strong>notes</strong> (title,
+folder, excerpt) and, from the server, <strong>In note text</strong>:
+the full text of every note in the folders the dashboard reads, with the
+matching line. Word order, case and accents do not matter
+(<code>ytmatning</code> finds <code>ytmätning</code>).</li>
+<li><code>↑</code> <code>↓</code> choose, Enter runs or opens, Esc
+closes. Enter on an event opens it in the Day view with its panel.</li>
+</ul>
+<h3 id="quick-capture">Quick capture</h3>
+<p><img src="guide/14-palette-capture.png"
+alt="Palette in capture mode" /></p>
+<p>Start the text with <strong>+</strong> and Enter:</p>
+<ul>
+<li><strong>Capture</strong> appends
+<code>- YYYY-MM-DD HH:MM text</code> to
+<code>Inbox/WorkDashboard/Capture from Work Dashboard.md</code>
+(<code>obsidian.capture_text_file</code>).</li>
+<li><strong>Capture as task</strong> appends <code>- [ ] text</code> to
+<code>Inbox/WorkDashboard/List from Work Dashboard.md</code>
+(<code>obsidian.capture_task_file</code>); it then appears among your
+tasks.</li>
+</ul>
+<p>Every search also offers to capture what you typed. Capture only ever
+appends one line; a missing file is created with a heading.</p>
+<hr />
+<h2 id="5-creating-things-from-the-page">5. Creating things from the
+page</h2>
+<p>Every dialog closes with Esc. Everything the dashboard creates is
+tagged, so it can undo its own last batch and nothing else.</p>
+<h3 id="new-reminders">New reminders</h3>
+<p><img src="guide/15-new-reminders.png"
+alt="New reminders dialog" /></p>
+<p><code>R</code>, <code>N</code> or <strong>+</strong>. One row per
+reminder, each with its own list, priority, date and time and notes. The
+<strong>New rows get</strong> line sets defaults for new rows (Today,
+Tomorrow, Next Monday, In a week, No date). The box at the top takes
+several titles at once, separated by <code>;</code> or new lines ("+ Add
+3 rows").</p>
+<p>On the right, a day or week calendar shows your events: click a time
+to place the selected row there, or to add a new row at that time.
+<strong>Add reminders</strong> creates them in Apple Reminders in one
+go; rows that fail stay in the dialog. <strong>Undo</strong> removes the
+last batch (only reminders it created and that are still open). The
+draft is kept if you close the dialog.</p>
+<h3 id="plan-blocks">Plan blocks</h3>
+<p><img src="guide/16-plan-blocks.png" alt="Plan blocks dialog" /></p>
+<p><code>P</code> or the toolbar. Time blocking: one card per block with
+a title, date, start, length, notes and an <strong>Outlook
+category</strong>. Set the time by hand or click the calendar on the
+right, which shows your events and the free bands (green).
+<strong>Suggest a time</strong> ranks free slots by fit, buffer around
+meetings (<code>planner.buffer_minutes</code>), the day's load and your
+habits.</p>
+<p>The <strong>Obsidian note</strong> choice on a card creates a note
+when the block is booked: <strong>Meeting note</strong> makes the
+meeting note (<code>YYYY-MM-DD Title</code>), <strong>Linked
+note</strong> makes a note from any template with
+<code>meeting: &lt;title&gt;</code>. Either way it shows under Related
+notes for that meeting. Undo removes the events but keeps the notes.</p>
+<p><strong>Book</strong> creates the blocks as Busy. Blocks for the
+Exchange calendar (<code>planner.outlook_calendar</code>) are booked
+through Microsoft Outlook so the category is set (EventKit cannot set
+categories); other calendars go through EventKit. Outlook-created blocks
+appear on the page after Exchange syncs. <strong>Undo</strong> removes
+only the events of the last batch. <strong>Discard</strong> clears the
+draft.</p>
+<h3 id="new-note">New note</h3>
+<p><img src="guide/17-new-note.png" alt="New note dialog" /></p>
+<p><code>Shift N</code>, the toolbar, or <strong>Meeting note</strong>
+in the event panel. Title, folder (only folders the dashboard may write
+to, <code>obsidian.write_folders</code> and their subfolders), and
+template: Meeting, Idea, Literature, Blank, or any <code>.md</code> in
+the vault's <code>Templates</code> folder (<code>{{title}}</code>,
+<code>{{date}}</code>, <code>{{time}}</code> are filled in). "Open in
+Obsidian after creating" jumps straight to it.</p>
+<p>New note is create-only: a name that is taken gets " 2", nothing is
+ever overwritten.</p>
+<h3 id="inbox-triage">Inbox triage</h3>
+<p><img src="guide/18-inbox-triage.png" alt="Inbox triage dialog" /></p>
+<p><code>I</code> or the palette. The notes in the Inbox folder, oldest
+first, with their age (amber from 14 days) and first line. Pick a folder
+and <strong>Move</strong>. Only Inbox notes can be moved, only into
+allowed folders, never onto an existing note. <strong>Undo last
+move</strong> puts the last one back. The capture files are not
+listed.</p>
+<h3 id="new-jira-issue">New Jira issue</h3>
+<p><img src="guide/19-new-jira-issue.png"
+alt="New Jira issue dialog" /></p>
+<p><code>J</code>, the palette, or <strong>→ Jira</strong> on a reminder
+or Obsidian card on the Board. Summary, Epic (open Epics of the project;
+<code>jira.default_epic</code> is preselected), priority, due date and
+description. When you promote a reminder or task, the issue gets its
+notes, due date, priority and, for an Obsidian task, a link back to the
+note; the original is not changed. Create-only.</p>
+<hr />
+<h2 id="6-timers">6. Timers</h2>
+<p>Both timers live on the server, so the Mac, iPad and iPhone show the
+same one.</p>
+<h3 id="countdown">Countdown</h3>
+<table>
+<thead>
+<tr class="header">
+<th>Setting it</th>
+<th>Running</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><img src="guide/20-countdown-set.png" alt="Countdown panel" /></td>
+<td><img src="guide/21-countdown-running.png"
+alt="Countdown running in the toolbar" /></td>
+</tr>
+</tbody>
+</table>
+<p>The stopwatch button in the toolbar, <code>A</code>, or "Countdown"
+in the palette. Type what it is for, set the minutes (default 20; − / +
+by 5; quick 10, 20, 30, 45; the last value is remembered per browser)
+and <strong>Start</strong>.</p>
+<p>While it runs the button shows the text and time left with a progress
+fill; click it for <strong>+5 min</strong> or <strong>Stop</strong>.
+When it ends the button turns red and pulses, the tab title shows ⏰,
+open pages beep every 2 s for up to a minute, and the Mac shows a
+notification with a system sound (<code>alarms.mac_sound</code>), even
+with no browser open. One click on the red button stops it everywhere.
+One countdown at a time; starting a new one replaces it.</p>
+<p>On iPad and iPhone the page can only beep after one tap on it since
+it was opened (a browser rule).</p>
+<h3 id="focus-timer-with-jira-worklog">Focus timer with Jira
+worklog</h3>
+<table>
+<thead>
+<tr class="header">
+<th>Running on a Jira issue</th>
+<th>Stopping and logging</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><img src="guide/22-focus-timer.png"
+alt="Focus timer chip in the toolbar" /></td>
+<td><img src="guide/23-focus-timer-stop.png"
+alt="Log focus time dialog" /></td>
+</tr>
+</tbody>
+</table>
+<p><strong>▶</strong> on a Jira card on the Board, or "Start focus
+timer" in the palette. A chip in the toolbar shows the issue key and the
+elapsed time. <strong>Stop</strong> opens a dialog with the minutes
+prefilled and an optional comment; <strong>Log to Jira</strong> posts a
+worklog to that issue. <strong>Keep running</strong> closes the dialog,
+<strong>Discard</strong> stops without logging anything.</p>
+<hr />
+<h2 id="7-the-right-panel">7. The right panel</h2>
+<p>Visible in every screenshot above, from top to bottom by default:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Block</th>
+<th>What it shows</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Date and time</strong>, <strong>Month calendar</strong></td>
+<td>Today and the current month at a glance.</td>
+</tr>
+<tr class="even">
+<td><strong>Booked hours, next 14 days</strong></td>
+<td>One bar per day against the full-day line.</td>
+</tr>
+<tr class="odd">
+<td><strong>Now / Next</strong></td>
+<td>The current meeting with time left, or the next one with "in 35
+min", and overlap warnings.</td>
+</tr>
+<tr class="even">
+<td><strong>Today's numbers</strong></td>
+<td>Meetings today, booked hours against a full day, overdue (links to
+Overdue).</td>
+</tr>
+<tr class="odd">
+<td><strong>Hours booked this week</strong></td>
+<td>Against the week's capacity.</td>
+</tr>
+<tr class="even">
+<td><strong>Up next</strong></td>
+<td>The next tasks by due date.</td>
+</tr>
+<tr class="odd">
+<td><strong>Pinned notes</strong></td>
+<td>Notes with the <code>#dashboard</code> tag.</td>
+</tr>
+<tr class="even">
+<td><strong>Deadlines, next 30 days</strong></td>
+<td>Countdown (red within 2 days, amber within 7) from Jira due dates,
+note frontmatter <code>due:</code> or <code>deadline:</code>, and events
+or reminders whose title says deadline, due, submission, frist, sista
+dag, last day, inlämning or closes.</td>
+</tr>
+<tr class="odd">
+<td><strong>Heads up, next 7 days</strong></td>
+<td>Overbooked days, overlaps, no lunch break, long stretches. Click a
+day to open it.</td>
+</tr>
+<tr class="even">
+<td><strong>Next meeting</strong></td>
+<td>Meeting prep for the next meeting today or tomorrow.</td>
+</tr>
+</tbody>
+</table>
+<p>Hover a block (always visible on touch) for three controls: a
+<strong>grip</strong> to drag it up or down, a <strong>chevron</strong>
+to fold it, <strong>✕</strong> to hide it. Order and hiding are saved in
+the current profile; folding is remembered per browser, so the iPad and
+the Mac can fold differently.</p>
+<hr />
+<h2 id="8-settings-and-profiles">8. Settings and profiles</h2>
+<p><code>,</code> or the gear. A <strong>profile</strong> is what the
+page looks like when it opens; <strong>Workday</strong> and
+<strong>Data</strong> apply to all profiles.</p>
+<p><img src="guide/24-settings-profiles.png"
+alt="Settings, Profiles tab" /></p>
+<p><strong>Profiles.</strong> Five starters: Overview, Focus today,
+Planning, Review, Phone glance. Duplicate, rename, reorder, delete, or
+"New profile from what you see now". Choose which one this browser opens
+with (Default here). Keys <code>1</code> to <code>9</code> switch
+profiles; the sidebar footer has a picker and <strong>Save</strong> to
+store the current filters and layout into the active profile. Profiles
+are stored on the Mac (<code>data/profiles.json</code>), so every device
+sees the same set.</p>
+<p><img src="guide/25-settings-panel.png"
+alt="Settings, Right panel tab" /></p>
+<p><strong>Start and layout</strong> (start view, side panels and
+widths, theme), <strong>Right panel</strong> (which blocks, in which
+order; brings hidden blocks back), <strong>Toolbar and views</strong>
+(buttons, view names, phone tab bar, Week and Day details such as load
+bars, overlap marks and load warnings).</p>
+<p><img src="guide/26-settings-data.png" alt="Settings, Data tab" /></p>
+<p><strong>Workday</strong>: the hours of a full day (drives load bars
+and "/ 8 h"). <strong>Data</strong> edits a safe part of the live
+<code>config.json</code> on the Mac: sync interval, calendar days back
+and ahead, weather place and coordinates, Jira on/off and JQL, work
+hours, and <strong>Obsidian sources</strong> (which folders and files
+are read). Everything else is edited in the live config; see the README
+for every key.</p>
+<hr />
+<h2 id="9-data-sources-and-health">9. Data sources and health</h2>
+<p><img src="guide/27-data-sources.png" alt="Data sources panel" /></p>
+<p>The four dots at the bottom of the sidebar (Calendar, Reminders,
+Obsidian, Jira) are green when the last read worked. Click them for
+<strong>Data sources</strong>: state, last good sync, number of items
+and read time per source, and <strong>Refresh now</strong>.</p>
+<p><img src="guide/28-source-failing.png"
+alt="A failing source: banner above the view" /></p>
+<p>When a source fails, its dot turns red, a banner above the view says
+which one ("Jira is failing, showing data from 13:22") with
+<strong>Details</strong>, and the panel shows the error and a hint to
+fix it. A failing source <strong>keeps its last good data</strong> on
+the page, so a Jira outage never blanks your calendar. The banner can be
+hidden until something changes.</p>
+<hr />
+<h2 id="10-ipad-and-iphone">10. iPad and iPhone</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Today</th>
+<th>Week</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><img src="guide/30-phone-today.png" alt="Phone, Today" /></td>
+<td><img src="guide/31-phone-week.png" alt="Phone, Week" /></td>
+</tr>
+</tbody>
+</table>
+<p>On narrow screens the side panels become drawers and a <strong>tab
+bar</strong> appears at the bottom (Today, Week, Month, Board, Overdue;
+choose the tabs in Settings &gt; Toolbar and views). The Now / Next card
+and today's numbers sit at the top. The "Phone glance" profile is set up
+for this.</p>
+<p><strong>Narrow windows.</strong> At 900 px wide or less (a Mac window
+beside other apps, iPad Split View) the page goes slim: the greeting is
+one line with the weather as icon and temperature, the toolbar is lower,
+and Now / Next becomes a one-line strip, so the week starts much higher
+on the page. Wider windows show the full header again.</p>
+<p><strong>Access token.</strong> Every request needs a token, a second
+layer behind <code>tailscale serve</code>. On the Mac,
+<code>update.sh</code> opens the enrolment link. For the iPad or iPhone,
+run <code>auth.py show</code> on the Mac (in
+<code>~/Library/Application Support/WorkDashboard/</code>, with its
+<code>.venv</code> Python) and open the link once on the device; the
+page then keeps a cookie for about a year. <code>auth.py rotate</code>
+makes a new token and every device enrols again.</p>
+<p><strong>Full screen.</strong> On the iPad the full screen button
+works as on the Mac. On the iPhone it is hidden; Add to Home Screen
+gives a page without browser bars instead.</p>
+<p>Links open the native apps: Reminders, Obsidian (the vault name in
+<code>obsidian.vault_name</code> must match on the device), Jira, and
+Show in Calendar opens the Calendar app on the event's day. The
+countdown and focus timer are shared with the Mac.</p>
+<hr />
+<h2 id="11-dark-theme">11. Dark theme</h2>
+<p><img src="guide/29-week-dark.png" alt="Week view, dark theme" /></p>
+<p>Follows the system by default; set Light, Dark or System per profile
+in Settings &gt; Start and layout, or toggle it from the palette.</p>
+<hr />
+<h2 id="12-keyboard-shortcuts">12. Keyboard shortcuts</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Key</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>⌘K</code> or <code>/</code></td>
+<td>Search and commands</td>
+</tr>
+<tr class="even">
+<td><code>D</code> <code>W</code> <code>M</code> <code>Y</code>
+<code>B</code> <code>O</code> <code>S</code> <code>V</code></td>
+<td>Day, Week, Month, Year, Board, Overdue, Statistics, Weekly
+review</td>
+</tr>
+<tr class="odd">
+<td><code>T</code></td>
+<td>Today</td>
+</tr>
+<tr class="even">
+<td><code>←</code> <code>→</code></td>
+<td>Previous / next period</td>
+</tr>
+<tr class="odd">
+<td><code>R</code> or <code>N</code></td>
+<td>New reminders</td>
+</tr>
+<tr class="even">
+<td><code>Shift N</code></td>
+<td>New note</td>
+</tr>
+<tr class="odd">
+<td><code>J</code></td>
+<td>New Jira issue</td>
+</tr>
+<tr class="even">
+<td><code>I</code></td>
+<td>Inbox triage</td>
+</tr>
+<tr class="odd">
+<td><code>P</code></td>
+<td>Plan blocks</td>
+</tr>
+<tr class="even">
+<td><code>A</code></td>
+<td>Countdown</td>
+</tr>
+<tr class="odd">
+<td><code>,</code></td>
+<td>Settings</td>
+</tr>
+<tr class="even">
+<td><code>1</code> to <code>9</code></td>
+<td>Switch profile</td>
+</tr>
+<tr class="odd">
+<td><code>[</code> <code>]</code></td>
+<td>Left / right panel</td>
+</tr>
+<tr class="even">
+<td><code>F</code></td>
+<td>Full screen on / off</td>
+</tr>
+<tr class="odd">
+<td><code>Esc</code></td>
+<td>Close the open dialog, the event panel or a drawer. In the
+dashboard's own full screen (<code>F</code>), Esc also leaves full
+screen; Safari's window full screen (Ctrl ⌘ F) is not affected</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="13-what-the-dashboard-may-change">13. What the dashboard may
+change</h2>
+<p>The dashboard reads everything and changes almost nothing. It never
+edits or deletes anything it did not create, with these exact
+exceptions:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Source</th>
+<th>May do</th>
+<th>Never does</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Calendar</strong></td>
+<td>Create Plan blocks; Undo removes the events of its own last batch
+(tag in the notes plus stored id)</td>
+<td>Edit or delete any other event</td>
+</tr>
+<tr class="even">
+<td><strong>Reminders</strong></td>
+<td>Create reminders; Undo removes open reminders of its own last
+batch</td>
+<td>Edit, complete or delete any other reminder</td>
+</tr>
+<tr class="odd">
+<td><strong>Obsidian</strong></td>
+<td>Create new notes and the weekly review (create-only); append one
+line to the two capture files; move notes out of the Inbox folder into
+allowed folders (never onto an existing file, last move undoable)</td>
+<td>Edit, overwrite or delete any note</td>
+</tr>
+<tr class="even">
+<td><strong>Jira</strong></td>
+<td>Change status when you drag a card; create issues; post worklogs
+from the focus timer</td>
+<td>Edit or delete an issue</td>
+</tr>
+</tbody>
+</table>
+<p>Data stays on the Mac: the server listens on 127.0.0.1 only
+(Tailscale forwards to it), and every request needs the access token
+(Keychain <code>WorkDashboard-access</code>). The only outbound traffic
+is the Jira API and the weather request (coordinates only). The Jira
+token is in the macOS Keychain. Snapshots, <code>data/</code> and the
+personal <code>config.json</code> are never committed to Git.</p>
+<hr />
+<h2 id="14-troubleshooting">14. Troubleshooting</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Symptom</th>
+<th>Fix</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A red dot or banner</td>
+<td>Click it: Data sources shows the error and a hint.</td>
+</tr>
+<tr class="even">
+<td>Calendar or Reminders denied</td>
+<td>System Settings &gt; Privacy &amp; Security &gt; Calendars /
+Reminders &gt; enable WorkDashboard.</td>
+</tr>
+<tr class="odd">
+<td>Exchange calendar missing</td>
+<td>It must be added in System Settings &gt; Internet Accounts; an
+account added only inside BusyCal is invisible to EventKit.</td>
+</tr>
+<tr class="even">
+<td>"Could not write the note", capture or move failed</td>
+<td>The folder must be in <code>obsidian.write_folders</code> (or the
+read folders) and synced by your cloud drive.</td>
+</tr>
+<tr class="odd">
+<td>Jira errors</td>
+<td>Data sources shows whether the token works. Store a new one:
+<code>security add-generic-password -U -s work-dashboard-jira -a &lt;email&gt; -w '&lt;token&gt;'</code>.</td>
+</tr>
+<tr class="even">
+<td>Meetings keep their calendar colour instead of the Outlook
+category</td>
+<td>Microsoft Outlook must be installed and running for the Exchange
+account, <code>calendar.category_colors</code> and
+<code>planner.outlook</code> must be on; colours appear after the next
+harvest.</td>
+</tr>
+<tr class="odd">
+<td>Plan block booked but not on the page</td>
+<td>Outlook-created blocks appear after Exchange syncs (usually a minute
+or two).</td>
+</tr>
+<tr class="even">
+<td>No beep on iPad / iPhone</td>
+<td>Tap the page once after opening it.</td>
+</tr>
+<tr class="odd">
+<td>Page does not load</td>
+<td>Restart:
+<code>launchctl kickstart -k gui/$(id -u)/local.workdashboard</code>.
+Logs:
+<code>~/Library/Application Support/WorkDashboard/logs/err.log</code>.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="regenerating-the-screenshots">Regenerating the screenshots</h2>
+<p>The images in <code>docs/guide/</code> come from the demo server and
+<code>demo/guide_shots.py</code> (Python Playwright with Chromium, 1440
+wide at 2×, plus an iPhone 13 profile). Each shot starts at 1440 × 900
+(or the iPhone screen) and the window grows taller until no scroll area
+hides anything (main column, sidebar, right panel, an open dialog), up
+to 4000 px, so every image shows the whole dashboard:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> demo/serve_demo.py <span class="kw">&amp;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> demo/guide_shots.py                          <span class="co"># all shots</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> demo/guide_shots.py http://127.0.0.1:8766/ 08-board 12-weekly-review   <span class="co"># only some</span></span></code></pre></div>
+<p>The README images in <code>docs/screenshots/</code> are made by
+<code>demo/screenshots.mjs</code> (headless Google Chrome, no npm
+packages; <code>CHROME=/path/to/chrome</code> for another Chromium),
+with the same whole-page sizing. Only demo data goes into
+screenshots.</p>
+</main>
+<a class="totop" href="#top">↑ Top</a>
+<footer>
+  © 2026 Robert Tomkowski · <a href="https://github.com/rtomkowski/work-dashboard/blob/main/LICENSE">MIT License</a> ·
+  Developed with the assistance of Claude Code · <a href="https://github.com/rtomkowski/work-dashboard/blob/main/docs/GUIDE.md">This guide on GitHub</a>
+</footer>
+</body>
+</html>
