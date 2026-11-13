@@ -4,8 +4,14 @@
 .topbar { position: sticky; top: 0; z-index: 40; background: #1c1a45; color: #fff;
   font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   box-shadow: 0 1px 0 rgba(255,255,255,.06), 0 2px 10px rgba(0,0,0,.18); }
+.topbar, .topbar * { box-sizing: border-box; }
 .topbar .in { max-width: 1120px; margin: 0 auto; padding: 10px max(16px, env(safe-area-inset-left, 0px)); display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
 .topbar .brand { display: flex; align-items: center; gap: 10px; color: #fff; text-decoration: none; font-weight: 700; letter-spacing: .02em; }
+.topbar .brand svg { display: block; flex: none; }
+/* Pages may have their own .brand, nav or a styles (the anatomy wireframe does): the menu sets everything itself. */
+.topbar .brand, .topbar nav a { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; line-height: 1.6; text-transform: none; }
+.topbar .brand { font-size: 16px; font-weight: 700; letter-spacing: .02em; padding: 0; margin: 0; background: none; border: 0; }
+.topbar nav a { font-weight: 400; letter-spacing: normal; }
 .topbar nav { margin-left: auto; display: flex; gap: 4px; flex-wrap: wrap; }
 .topbar nav a { color: #d9d8f5; text-decoration: none; padding: 6px 10px; border-radius: 6px; font-size: 15px; }
 .topbar nav a:hover, .topbar nav a[aria-current] { background: rgba(255,255,255,.12); color: #fff; }

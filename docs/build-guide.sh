@@ -21,16 +21,16 @@ cat <<EOF
 <title>Work Dashboard User Guide</title>
 <meta name="description" content="Every view, dialog and action of Work Dashboard, one feature at a time, with a screenshot of each.">
 <link rel="icon" href="${ICON}">
-<link rel="stylesheet" href="topbar.css">
-<link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="topbar.css?v=2">
+<link rel="stylesheet" href="site.css?v=2">
 </head>
 <body>
 <header class="topbar"><div class="in">
   <a class="brand" href="./"><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="3" width="20" height="18" rx="4" fill="#5a54d6"/><rect x="5" y="7" width="5" height="11" rx="1.5" fill="#fff"/><rect x="12" y="7" width="7" height="4" rx="1.5" fill="#fff"/><rect x="12" y="13" width="7" height="5" rx="1.5" fill="#a9a5ff"/></svg>Work Dashboard</a>
   <nav aria-label="Site">
     <a href="./">Home</a>
-    <a href="guide.html" aria-current="page">Guide</a>
     <a href="anatomy/">Anatomy</a>
+    <a href="guide.html" aria-current="page">Guide</a>
     <a href="./#install">Install</a>
     <a href="https://github.com/rtomkowski/work-dashboard">GitHub</a>
   </nav>
